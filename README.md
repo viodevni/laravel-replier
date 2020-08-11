@@ -1,2 +1,2 @@
 # Laravel Replier
-Tools for Laravel 7 APIs
+Laravel package for making JSON APIs.
