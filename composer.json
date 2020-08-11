@@ -1,0 +1,40 @@
+{
+    "name": "viodev/laravel-replier",
+    "description": "Laravel package for making JSON APIs.",
+    "keywords": [
+        "laravel",
+        "lumen",
+        "fractal",
+        "transformer",
+        "api",
+        "response"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Phillip McKeown",
+            "email": "phillip@viodev.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Viodev\\": "src"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "require": {
+        "php": ">=7.1.0",
+        "laravel/framework": "^7.0",
+        "league/fractal": "^0.19.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Viodev\\ReplierServiceProvider"
+            ]
+        }
+    }
+}

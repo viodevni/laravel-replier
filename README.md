@@ -1,2 +1,2 @@
-# laravel-replier
-Set of tools for creating Laravel 7 APIs
+# Laravel Replier
+Tools for Laravel 7 APIs
