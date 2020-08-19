@@ -14,8 +14,8 @@ class Replier
 
     private $translator, $lang_prefix;
 
-    public $result = self::SUCCESS;
-    public $status = 200;
+    public $result = null;
+    public $status = null;
     public $data = array();
 
     public function __construct(Translator $translator, $lang_prefix)
@@ -62,13 +62,15 @@ class Replier
 
     public function success()
     {
+        $this->result = self::SUCCESS;
+        $this->status = $this->status ?? 200;
         return $this->reply();
     }
 
     public function fail(...$args)
     {
         $this->result = self::FAIL;
-        $this->status = 422;
+        $this->status = $this->status ?? 422;
         $this->resolveCode($args);
 
         return $this->reply();
@@ -77,7 +79,7 @@ class Replier
     public function error(...$args)
     {
         $this->result = self::ERROR;
-        $this->status = 500;
+        $this->status = $this->status ?? 500;
         $this->resolveCode($args);
 
         return $this->reply();
@@ -122,6 +124,11 @@ class Replier
     public function maintenanceMode()
     {
         return $this->withStatus(405)->fail('maintenance');
+    }
+
+    public function tooManyRequests()
+    {
+        return $this->withStatus(429)->fail('too_many_requests');
     }
 
     public function withStatus(int $status)
