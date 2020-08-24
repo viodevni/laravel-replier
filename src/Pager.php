@@ -13,9 +13,9 @@ class Pager
     public function __construct(Request $request, $limit, $order)
     {
         $request->validate([
-            'limit' => ['nullable', 'integer', 'between:1,'.$limit],
-            'order' => ['nullable', 'in:asc,desc'],
-            'last_id' => ['nullable', 'integer']
+            'limit' => ['integer', 'between:1,'.$limit],
+            'order' => ['in:asc,desc'],
+            'last_id' => ['integer']
         ]);
 
         $this->limit = $request->input('limit', $limit);

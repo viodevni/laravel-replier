@@ -96,10 +96,6 @@ class Replier
 
         return $this->reply();
     }
-    public function validationFailed()
-    {
-        return $this->fail('validation_failed');
-    }
 
     public function unauthorized()
     {
@@ -124,6 +120,11 @@ class Replier
     public function maintenanceMode()
     {
         return $this->withStatus(405)->fail('maintenance');
+    }
+
+    public function validationFailed()
+    {
+        return $this->withStatus(422)->fail('validation_failed');
     }
 
     public function tooManyRequests()
