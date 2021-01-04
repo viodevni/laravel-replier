@@ -20,6 +20,12 @@ class ReplierServiceProvider extends ServiceProvider
         $this->app->singleton(Pager::class, function () {
             return new Pager(resolve('request'), config('pager.limit'), config('pager.order'));
         });
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                TransformerMakeCommand::class,
+            ]);
+        }
     }
 
     /**
