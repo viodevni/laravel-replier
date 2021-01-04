@@ -9,5 +9,4 @@ return [
     'validation_failed' => 'The given data failed to pass validation.',
     'too_many_requests' => 'Too many requests.',
     'error' => 'System error occurred, please retry.',
-
 ];
