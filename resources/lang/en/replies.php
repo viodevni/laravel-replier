@@ -9,4 +9,20 @@ return [
     'validation_failed' => 'The given data failed to pass validation.',
     'too_many_requests' => 'Too many requests.',
     'error' => 'System error occurred, please retry.',
+
+    // Standard replies
+
+    'create_success' => 'Created successfully.',
+    'update_success' => 'Updated successfully.',
+    'delete_success' => 'Deleted successfully.',
+    'exists' => 'Already exists.',
+    'does_not_exists' => 'Does not exist.',
+
+    // Custom validation
+
+    'comma_separated_list' => 'The :attribute must be a comma separated list.',
+
+    // Application replies
+
+
 ];
