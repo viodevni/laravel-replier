@@ -117,11 +117,6 @@ class Replier
         return $this->withStatus(405)->fail('method_not_allowed');
     }
 
-    public function maintenanceMode()
-    {
-        return $this->withStatus(405)->fail('maintenance');
-    }
-
     public function validationFailed()
     {
         return $this->withStatus(422)->fail('validation_failed');
@@ -130,6 +125,11 @@ class Replier
     public function tooManyRequests()
     {
         return $this->withStatus(429)->fail('too_many_requests');
+    }
+
+    public function maintenanceMode()
+    {
+        return $this->withStatus(503)->fail('maintenance_mode');
     }
 
     public function withStatus(int $status)
