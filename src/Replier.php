@@ -129,7 +129,7 @@ class Replier
 
     public function maintenanceMode()
     {
-        return $this->withStatus(503)->fail('maintenance_mode');
+        return $this->withStatus(503)->error('maintenance_mode');
     }
 
     public function withStatus(int $status)
