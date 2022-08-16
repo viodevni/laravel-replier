@@ -1,8 +1,12 @@
 <?php
 
-namespace Viodev;
+namespace Viodev\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Viodev\Console\TransformerMakeCommand;
+use Viodev\Pager;
+use Viodev\Replier;
+use Viodev\Sparser;
 
 class ReplierServiceProvider extends ServiceProvider
 {
@@ -21,6 +25,10 @@ class ReplierServiceProvider extends ServiceProvider
             return new Pager(resolve('request'), config('pager.limit'), config('pager.order'));
         });
 
+        $this->app->singleton(Sparser::class, function () {
+            return new Sparser(resolve('request'));
+        });
+
         if ($this->app->runningInConsole()) {
             $this->commands([
                 TransformerMakeCommand::class,
@@ -36,13 +44,13 @@ class ReplierServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../config/replier.php' => config_path('replier.php'),
+            __DIR__ . '/../../config/replier.php' => config_path('replier.php'),
         ]);
         $this->publishes([
-            __DIR__ . '/../config/pager.php' => config_path('pager.php'),
+            __DIR__ . '/../../config/pager.php' => config_path('pager.php'),
         ]);
         $this->publishes([
-            __DIR__ . '/../resources/lang/en/replies.php' => base_path('resources/lang/en/replies.php'),
+            __DIR__ . '/../../lang/en/replies.php' => is_dir(base_path('lang')) ? base_path('lang/en/replies.php') : base_path('resources/lang/en/replies.php'),
         ]);
     }
 }

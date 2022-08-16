@@ -1,6 +1,6 @@
 <?php
 
-namespace Viodev;
+namespace Viodev\Console;
 
 use Illuminate\Console\GeneratorCommand;
 
@@ -34,7 +34,7 @@ class TransformerMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__.'/stubs/transformer.stub';
+        return __DIR__.'/../stubs/transformer.stub';
     }
 
     /**

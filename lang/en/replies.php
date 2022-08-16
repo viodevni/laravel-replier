@@ -20,7 +20,7 @@ return [
 
     // Custom validation
 
-    'comma_separated_list' => 'The :attribute must be a comma separated list.',
+    'comma_separated_list' => 'The :attribute attribute must be a comma separated list.',
 
     // Application replies
 

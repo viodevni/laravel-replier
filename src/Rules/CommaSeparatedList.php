@@ -7,6 +7,7 @@ use Illuminate\Contracts\Validation\Rule;
 class CommaSeparatedList implements Rule
 {
     const INT = 'int';
+    const STRING = 'string';
 
     private $type;
     /**
@@ -33,6 +34,7 @@ class CommaSeparatedList implements Rule
         foreach(explode(',', $value) as $part){
             if(preg_match('/\s/', $part)) return false;
             if($this->type == self::INT && !is_numeric($part)) return false;
+            if($this->type == self::STRING && !is_string($part)) return false;
         }
 
         return true;
