@@ -4,12 +4,18 @@ namespace Viodev\Transformers;
 
 use Viodev\Sparser;
 
+/**
+ * @method transform($data)
+ */
+
 class Transformer
 {
-    public function create($data, ?Sparser $sparser)
+    public function create($data, ?Sparser $sparser) : array
     {
         $transformed = $this->transform($data);
 
-        return is_null($sparser) ? $transformed : array_intersect_key($transformed, array_flip($sparser->fields));
+        if(!is_null($sparser) && !empty($sparser->fields)) return array_intersect_key($transformed, array_flip($sparser->fields));
+
+        return $transformed;
     }
 }
