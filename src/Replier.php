@@ -140,8 +140,12 @@ class Replier
 
     public function withData(array $data)
     {
-        $this->data = $data['data'] ?? $data;
-        if(isset($data['meta'])) $this->meta = $data['meta'];
+        if(isset($data['meta'])) {
+            $this->data = $data['data'];
+            $this->meta = $data['meta'];
+        } else {
+            $this->data = $data;
+        }
         return $this;
     }
 }
