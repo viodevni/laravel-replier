@@ -27,7 +27,10 @@
     },
     "require": {
         "php": "^8.0",
-        "laravel/framework": "^7.0|^8.0|^9.0|^10.0|^11.0"
+        "illuminate/console": "^7.0|^8.0|^9.0|^10.0|^11.0",
+        "illuminate/contracts": "^7.0|^8.0|^9.0|^10.0|^11.0",
+        "illuminate/http": "^7.0|^8.0|^9.0|^10.0|^11.0",
+        "illuminate/support": "^7.0|^8.0|^9.0|^10.0|^11.0"
     },
     "extra": {
         "laravel": {
