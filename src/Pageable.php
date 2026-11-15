@@ -2,12 +2,14 @@
 
 namespace Viodev;
 
+use Illuminate\Database\Eloquent\Builder;
+
 trait Pageable
 {
-    public function scopePage($query, Pager $pager)
+    public function scopePage(Builder $query, Pager $pager): Builder
     {
-        if(!is_null($pager->last_id)){
-            $query->where('id', $pager->order == "asc" ? ">" : "<", $pager->last_id);
+        if(!is_null($pager->lastId)){
+            $query->where('id', $pager->order == "asc" ? ">" : "<", $pager->lastId);
         }
 
         $query->orderBy('id', $pager->order);

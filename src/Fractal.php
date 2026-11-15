@@ -2,14 +2,16 @@
 
 namespace Viodev;
 
+use Illuminate\Support\Collection;
+
 class Fractal
 {
-    public static function item($data, $transformer, Sparser $sparser = null) : array
+    public static function item(mixed $data, string $transformer, ?Sparser $sparser = null) : array
     {
         return (new $transformer)->create($data, $sparser);
     }
 
-    public static function collection($data, $transformer, Pager $pager, Sparser $sparser = null) : array
+    public static function collection(iterable $data, string $transformer, Pager $pager, ?Sparser $sparser = null) : array
     {
         $collection = [];
 
@@ -28,13 +30,17 @@ class Fractal
         ];
     }
 
-    private static function lastId($data)
+    private static function lastId(iterable $data): ?int
     {
-        if ($data instanceof \Illuminate\Support\Collection) return $data->last()->id ?? null;
-        if (is_array($data)) {
+        $lastId = null;
+
+        if ($data instanceof Collection) {
+            $lastId = $data->last()->id ?? null;
+        } elseif (is_array($data)) {
             $last = end($data);
-            if (isset($last['id'])) return $last['id'];
+            $lastId = $last['id'] ?? null;
         }
-        return null;
+
+        return $lastId === null ? null : (int) $lastId;
     }
 }

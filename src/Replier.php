@@ -12,16 +12,16 @@ class Replier
     private const ERROR = "error";
     private const MULTI = "multi";
 
-    private $translator, $lang_prefix;
+    private $translator, $langPrefix;
 
     public $result = null;
     public $status = null;
     public $data = array();
 
-    public function __construct(Translator $translator, $lang_prefix)
+    public function __construct(Translator $translator, $langPrefix)
     {
         $this->translator = $translator;
-        $this->lang_prefix = $lang_prefix;
+        $this->langPrefix = $langPrefix;
     }
 
     public function reply()
@@ -51,7 +51,7 @@ class Replier
 
         $this->code = $args[0];
 
-        $args[0] = $this->lang_prefix . $args[0];
+        $args[0] = $this->langPrefix . $args[0];
 
         if(isset($args[1]) && is_int($args[1])){
             $this->message = call_user_func_array([$this->translator, "choice"], $args);

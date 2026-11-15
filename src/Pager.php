@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 
 class Pager
 {
-    public $limit = null;
-    public $order = null;
-    public $last_id = null;
+    public int $limit;
+    public string $order;
+    public ?int $lastId;
 
-    public function __construct(Request $request, $limit, $order)
+    public function __construct(Request $request, int $limit, string $order)
     {
         $request->validate([
             'limit' => ['integer', 'between:1,'.$limit],
@@ -18,8 +18,9 @@ class Pager
             'last_id' => ['integer']
         ]);
 
-        $this->limit = $request->input('limit', $limit);
+        $this->limit = (int) $request->input('limit', $limit);
         $this->order = $request->input('order', $order);
-        $this->last_id = $request->input('last_id', null);
+        $lastId = $request->input('last_id', null);
+        $this->lastId = $lastId === null ? null : (int) $lastId;
     }
 }
